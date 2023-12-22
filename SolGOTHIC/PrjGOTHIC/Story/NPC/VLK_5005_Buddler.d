@@ -1,12 +1,12 @@
 
-instance VLK_5007_Buddler(Npc_Default)
+instance VLK_5005_Buddler(Npc_Default)
 {
 	name[0] = NAME_Buddler;
 	npcType = Npctype_MINE_Ambient;
 	guild = GIL_VLK;
 	level = 3;
-	voice = 3;
-	id = 5007;
+	voice = 1;
+	id = 5005;
 	attribute[ATR_STRENGTH] = 15;
 	attribute[ATR_DEXTERITY] = 10;
 	attribute[ATR_MANA_MAX] = 0;
@@ -15,7 +15,7 @@ instance VLK_5007_Buddler(Npc_Default)
 	attribute[ATR_HITPOINTS] = 76;
 	Mdl_SetVisual(self,"HUMANS.MDS");
 	Mdl_ApplyOverlayMds(self,"Humans_Tired.mds");
-	Mdl_SetVisualBody(self,"hum_body_Naked0",3,1,"Hum_Head_Fighter",70,3,vlk_armor_l);
+	Mdl_SetVisualBody(self,"hum_body_Naked0",3,1,"Hum_Head_Bald",67,1,vlk_armor_l);
 	B_Scale(self);
 	Mdl_SetModelFatness(self,0);
 	fight_tactic = FAI_HUMAN_COWARD;
@@ -25,13 +25,13 @@ instance VLK_5007_Buddler(Npc_Default)
 	CreateInvItem(self,ItFoLoaf);
 	CreateInvItem(self,ItFoBeer);
 	CreateInvItem(self,ItLsTorch);
-	daily_routine = Rtn_FMstart_5007;
+	daily_routine = Rtn_FMstart_5005;
 };
 
 
-func void Rtn_FMstart_5007()
+func void Rtn_FMstart_5005()
 {
-	TA_PickOre(0,0,23,0,"FM_88");
-	TA_PickOre(23,0,24,0,"FM_88");
+	TA_MineBellows(0,0,23,0,"FM_159");
+	TA_MineBellows(23,0,24,0,"FM_159");
 };
 
