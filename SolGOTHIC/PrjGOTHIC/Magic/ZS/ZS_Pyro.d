@@ -1,8 +1,9 @@
 
-func void B_StopZapped()
+func void B_StopPyro()
 {
-	PrintDebugNpc(PD_MAGIC,"B_StopZapped");
+	PrintDebugNpc(PD_ZS_FRAME,"B_StopPyro");
 	Npc_PercDisable(self,PERC_ASSESSSTOPMAGIC);
+	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
 	Npc_ClearAIQueue(self);
 	AI_Standup(self);
 	if(C_NpcIsHuman(self) || C_NpcIsOrc(self))
@@ -15,11 +16,10 @@ func void B_StopZapped()
 	};
 };
 
-func void ZS_Zapped()
+func void ZS_Pyro()
 {
-	PrintDebugNpc(PD_MAGIC,"ZS_Zapped");
-	Npc_PercEnable(self,PERC_ASSESSSTOPMAGIC,B_StopZapped);
-	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
+	PrintDebugNpc(PD_ZS_FRAME,"ZS_Pyro");
+	Npc_PercEnable(self,PERC_ASSESSSTOPMAGIC,B_StopPyro);
 	if(!Npc_HasBodyFlag(self,BS_FLAG_INTERRUPTABLE))
 	{
 		PrintDebugNpc(PD_MAGIC,"bodystate not interuptable, standing up...");
@@ -32,22 +32,22 @@ func void ZS_Zapped()
 	};
 };
 
-func int ZS_Zapped_Loop()
+func int ZS_Pyro_Loop()
 {
-	PrintDebugNpc(PD_MAGIC,"ZS_Zapped_Loop");
-	B_MagicHurtNpc(other,SPL_ZAPPED_DAMAGE_PER_SEC);
+	PrintDebugNpc(PD_ZS_LOOP,"ZS_Pyro_Loop");
+	B_MagicHurtNpc(other,SPL_PYRO_DAMAGE_PER_SEC);
 	if(self.attribute[ATR_HITPOINTS] <= 0)
 	{
 		Npc_ClearAIQueue(self);
 		AI_Standup(self);
 		return LOOP_END;
 	};
-	AI_Wait(self,1);
+	AI_Wait(self,0.5);
 	return LOOP_CONTINUE;
 };
 
-func void ZS_Zapped_End()
+func void ZS_Pyro_End()
 {
-	PrintDebugNpc(PD_MAGIC,"ZS_Zapped_End");
+	PrintDebugNpc(PD_ZS_FRAME,"ZS_Pyro_End");
 };
 
