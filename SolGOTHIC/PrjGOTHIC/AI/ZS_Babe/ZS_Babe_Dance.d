@@ -1,16 +1,18 @@
 
-func void ZS_Charlotte_Dance()
+func void ZS_Babe_Dance()
 {
-	PrintDebugNpc(PD_TA_FRAME,"ZS_Charlotte_Dance");
+	PrintDebugNpc(PD_TA_FRAME,"ZS_Babe_Dance");
+	AI_UnequipArmor(self);
+	B_SetBabeDefaultPerceptions();
 	AI_SetWalkMode(self,NPC_RUN);
 	AI_GotoWP(self,self.wp);
 	AI_AlignToWP(self);
 };
 
-func void ZS_Charlotte_Dance_Loop()
+func void ZS_Babe_Dance_Loop()
 {
 	var int danceStyle;
-	PrintDebugNpc(PD_TA_LOOP,"ZS_Charlotte_Dance_Loop");
+	PrintDebugNpc(PD_TA_LOOP,"ZS_Babe_Dance_Loop");
 	danceStyle = Hlp_Random(9);
 	if(danceStyle == 0)
 	{
@@ -51,8 +53,8 @@ func void ZS_Charlotte_Dance_Loop()
 	AI_GotoWP(self,self.wp);
 };
 
-func void ZS_Charlotte_Dance_End()
+func void ZS_Babe_Dance_End()
 {
-	PrintDebugNpc(PD_TA_FRAME,"ZS_Charlotte_Dance_End");
+	PrintDebugNpc(PD_TA_FRAME,"ZS_Babe_Dance_End");
 };
 
